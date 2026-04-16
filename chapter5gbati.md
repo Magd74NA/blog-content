@@ -13,7 +13,7 @@ coverWidth: 1200
 coverHeight: 630
 ---
 
-I'm working through Chapter 5 of Gbati's *Bare-Metal Embedded C Programming*, which focuses on the make build system. Having previously written my own linker script and initialized the C runtime on STM32 using weak and alias attributes, I was ready to automate the build process that I'd been running manually with gcc, openOCD, and GDB commands.
+I'm working through Chapter 5 of Gbati's *Bare-Metal Embedded C Programming*, which focuses on the make build system. Having previously [written my own linker script and initialized the C runtime on STM32](/blog/stm32-linker-script-and-startup-code) using weak and alias attributes, I was ready to automate the build process that I'd been running manually with gcc, openOCD, and GDB commands (as documented in [the blinky toolchain post](/blog/stm32-bare-metal-blinky-gnu-toolchain)).
 
 ## Understanding Makefile Structure
 
@@ -38,7 +38,7 @@ main.o : main.c
 
 ## Writing My Custom Makefile
 
-Rather than use Gbati's provided version, I decided to write my own. My setup differs slightly: I'm using an STM32F446 instead of the F411 Nucleo, and I wanted to try C23 instead of C11. I know C11 is more standard but GNU's arm-none compiler supports C23 now which has a few features I would like to be able to use in the future like underscores in numbers and being able to use binary literals with the 0b notation which I could see making embedded development a lot more convenient. I intend to write the barbell velocity tracker project I detailed in another post with C23 so it's good to just get used to using that as I work through the book.
+Rather than use Gbati's provided version, I decided to write my own. My setup differs slightly: I'm using an STM32F446 instead of the F411 Nucleo, and I wanted to try C23 instead of C11. I know C11 is more standard but GNU's arm-none compiler supports C23 now which has a few features I would like to be able to use in the future like underscores in numbers and being able to use binary literals with the 0b notation which I could see making embedded development a lot more convenient. I intend to write [the barbell velocity tracker project](/blog/velocity-tracker-project-plan) with C23 so it's good to just get used to using that as I work through the book.
 
 My first attempt failed with this cryptic error:
 ```

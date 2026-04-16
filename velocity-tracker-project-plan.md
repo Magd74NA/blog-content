@@ -14,7 +14,7 @@ coverWidth: 1200
 coverHeight: 630
 ---
 
-I've been working through Israel Gbati's *Bare-Metal Embedded C Programming* and writing up the [early](/blog/stm32-bare-metal-hello-world) [chapters](/blog/stm32-bare-metal-blinky-gnu-toolchain) as I go. The book covers the fundamentals, but I need a capstone project. I want something that ties together peripherals, protocols, and power management into a device that does something useful.
+I've been working through Israel Gbati's *Bare-Metal Embedded C Programming* and writing up the [early](/blog/stm32-bare-metal-hello-world) [chapters](/blog/stm32-bare-metal-blinky-gnu-toolchain) as I go, including posts on [writing a linker script and startup code from scratch](/blog/stm32-linker-script-and-startup-code), [building a custom Makefile](/blog/chapter5gbati), and [understanding ARM CMSIS memory-mapped hardware](/blog/chapter6gbati). The book covers the fundamentals, but I need a capstone project. I want something that ties together peripherals, protocols, and power management into a device that does something useful.
 
 This post is my plan for that project. This is a first draft. I have thought through the design, but I haven't built anything yet. I expect to hit problems once I start. The sensor might not match its datasheet. The power budget might not work as intended. Features that look simple might turn into rabbit holes. I'll iterate and cut scope as needed. This is the optimistic version.
 

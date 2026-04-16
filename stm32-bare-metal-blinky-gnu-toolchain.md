@@ -144,4 +144,4 @@ A few things clicked that I hadn't thought about before:
 - `-ffunction-sections` and `-fdata-sections` put each function and variable in its own linker section, so `--gc-sections` can strip out anything that nothing calls. Without it the linker keeps everything regardless of use.
 - The linker script is essentially a memory map: it tells the linker where flash starts, where RAM starts, how large each region is, and which sections go where. The startup code uses those symbols to know where to copy `.data` from flash to RAM before `main` runs.
 
-Chapter 4 is about linker scripts and startup files in depth, the startup assembly that runs before `main`, and why those memory region definitions are laid out the way they are.
+Chapter 4 is about linker scripts and startup files in depth, the startup assembly that runs before `main`, and why those memory region definitions are laid out the way they are. Later chapters cover [automating the build with a Makefile](/blog/chapter5gbati) and [rewriting hardware definitions using the CMSIS standard](/blog/chapter6gbati).

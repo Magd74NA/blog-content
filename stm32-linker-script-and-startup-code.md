@@ -13,7 +13,7 @@ coverWidth: 1000
 coverHeight: 1160
 ---
 
-Chapters 2 and 3 (covered in [the hello world post](/blog/stm32-bare-metal-hello-world) and [the blinky toolchain post](/blog/stm32-bare-metal-blinky-gnu-toolchain)) relied on STM32CubeIDE's auto-generated startup assembly and linker script. Chapter 4 of Israel Gbati's *Bare-Metal Embedded C Programming* rips all of that away: you write the linker script yourself, write the startup code in C instead of assembly, and piece together enough of the C runtime for `main()` to actually run.
+Chapters 2 and 3 (covered in [the hello world post](/blog/stm32-bare-metal-hello-world) and [the blinky toolchain post](/blog/stm32-bare-metal-blinky-gnu-toolchain)) relied on STM32CubeIDE's auto-generated startup assembly and linker script. Chapter 4 of Israel Gbati's *Bare-Metal Embedded C Programming* rips all of that away: you write the linker script yourself, write the startup code in C instead of assembly, and piece together enough of the C runtime for `main()` to actually run. ([Chapter 5](/blog/chapter5gbati) builds on this by automating the build with a Makefile, and [Chapter 6](/blog/chapter6gbati) rewrites the hardware access using the CMSIS standard.)
 
 ## The Memory Map
 
