@@ -1,6 +1,6 @@
 ---
 title: "STM32F446 + CMake + CLion Integration"
-date: "2026-04-17"
+date: "2026-04-16"
 updated: "2026-04-17"
 categories:
   - "embedded"
