@@ -205,3 +205,7 @@ This was an exercise in suffering but I got CMake working and CLion properly one
 ## Conclusion
 
 I got what I came for: one-click build and flash in CLion for STM32F446 bare-metal C. Cross-compilation toolchain file, linker script integration, OpenOCD config on Arch, and a working debug workflow.
+
+## The Payoff
+
+The first time I hit a breakpoint on `GPIOA->ODR ^= LED_PIN` and pressed Continue, the LED toggled. Pressed it again, toggled back. I was stepping through code running on the bare metal from inside a proper IDE. Just click, step, watch the hardware respond. That's when the whole painful detour felt worth it and justified my decision to settle on CLion as my IDE of choice.
