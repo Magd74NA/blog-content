@@ -7,7 +7,7 @@ categories:
   - "stm32"
   - "c"
 excerpt: "Setting up one-click build and flash for STM32F446 bare-metal development with CMake and CLion on Arch Linux."
-coverImage: "/images/posts/embedded-chapter7-gpio-cover.svg"
+coverImage: "/images/posts/embedded-cmake-cover.svg"
 coverWidth: 1200
 coverHeight: 630
 ---
