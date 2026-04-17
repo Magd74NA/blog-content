@@ -63,7 +63,7 @@
   <!-- Glow accent -->
   <circle cx="910" cy="290" r="80" fill="#14b8a6" opacity="0.03"/>
   <!-- Terminal snippet -->
-  <rect x="680" y="470" width="370" height="110" rx="6" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <rect x="680" y="470" width="570" height="110" rx="6" fill="#1e293b" stroke="#334155" stroke-width="1"/>
   <text x="696" y="498" font-family="ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, monospace" font-size="13" fill="#64748b">$</text>
   <text x="714" y="498" font-family="ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, monospace" font-size="13" fill="#94a3b8">cmake --build . && openocd -f board/st_nucleo_f4.cfg</text>
   <text x="696" y="520" font-family="ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, monospace" font-size="13" fill="#14b8a6">✓ Build: 224 bytes</text>

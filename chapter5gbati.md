@@ -123,4 +123,4 @@ arm-none-eabi-gdb
 
 The flashing process works as expected, writing 16384 bytes to the STM32F446. For future iterations, I'd like to explore automating the GDB commands as well, since we're just connecting to localhost:3333 served by openOCD. There should be a way to script these commands directly into the Makefile.
 
-This exercise reinforced the power of build systems and was a great introduction to the C flavor of build systems. What used to be a series of manual compiler and flashing commands is now reduced to `make final` and `make flash`. Although the book doesn't cover it, I'll probably dive into CMake eventually because my preferred IDE right now is CLion with IdeaVIM, and CLion really leverages CMake beautifully.
+This exercise reinforced the power of build systems and was a great introduction to the C flavor of build systems. What used to be a series of manual compiler and flashing commands is now reduced to `make final` and `make flash`. Although the book doesn't cover it, I eventually moved to CMake for [better CLion integration](/blog/embedded-cmake), since CLion with IdeaVIM is my preferred IDE and it leverages CMake beautifully.
