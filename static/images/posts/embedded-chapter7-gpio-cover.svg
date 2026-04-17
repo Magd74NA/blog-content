@@ -1,0 +1,72 @@
+<svg viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#0f172a"/>
+  <line x1="0" y1="157" x2="1200" y2="157" stroke="#14b8a6" opacity="0.09"/>
+  <line x1="0" y1="314" x2="1200" y2="314" stroke="#14b8a6" opacity="0.09"/>
+  <line x1="0" y1="471" x2="1200" y2="471" stroke="#14b8a6" opacity="0.09"/>
+  <text x="60" y="215" font-family="ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, monospace" font-size="16" fill="#94a3b8" letter-spacing="3">EMBEDDED</text>
+  <text x="60" y="300" font-family="ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, monospace" font-size="76" font-weight="800" fill="#f1f5f9">STM32F446</text>
+  <text x="60" y="380" font-family="ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, monospace" font-size="76" font-weight="800" fill="#f1f5f9">+ CMake + CLion</text>
+  <text x="60" y="420" font-family="ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, monospace" font-size="18" fill="#64748b">Bare-metal build &amp; flash on Arch Linux</text>
+  <rect x="60" y="440" width="260" height="3" rx="1.5" fill="url(#accentGrad)"/>
+  <defs>
+    <linearGradient id="accentGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#14b8a6"/>
+      <stop offset="100%" stop-color="#0d9488"/>
+    </linearGradient>
+    <linearGradient id="chipGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#14b8a6" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#0d9488" stop-opacity="0.05"/>
+    </linearGradient>
+  </defs>
+  <!-- Chip body -->
+  <rect x="800" y="160" width="220" height="260" rx="8" fill="#1e293b" stroke="#14b8a6" stroke-width="2"/>
+  <rect x="815" y="175" width="190" height="230" rx="4" fill="url(#chipGrad)"/>
+  <!-- Chip label -->
+  <text x="910" y="270" font-family="ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, monospace" font-size="20" font-weight="700" fill="#14b8a6" text-anchor="middle">STM32</text>
+  <text x="910" y="298" font-family="ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, monospace" font-size="16" fill="#5eead4" text-anchor="middle" opacity="0.7">F446RE</text>
+  <!-- Pin dot -->
+  <circle cx="825" cy="190" r="4" fill="#14b8a6" opacity="0.6"/>
+  <!-- Left pins -->
+  <rect x="772" y="200" width="28" height="6" rx="1" fill="#334155"/>
+  <rect x="772" y="224" width="28" height="6" rx="1" fill="#334155"/>
+  <rect x="772" y="248" width="28" height="6" rx="1" fill="#334155"/>
+  <rect x="772" y="272" width="28" height="6" rx="1" fill="#334155"/>
+  <rect x="772" y="296" width="28" height="6" rx="1" fill="#334155"/>
+  <rect x="772" y="320" width="28" height="6" rx="1" fill="#334155"/>
+  <rect x="772" y="344" width="28" height="6" rx="1" fill="#334155"/>
+  <rect x="772" y="368" width="28" height="6" rx="1" fill="#334155"/>
+  <!-- Right pins -->
+  <rect x="1020" y="200" width="28" height="6" rx="1" fill="#334155"/>
+  <rect x="1020" y="224" width="28" height="6" rx="1" fill="#334155"/>
+  <rect x="1020" y="248" width="28" height="6" rx="1" fill="#334155"/>
+  <rect x="1020" y="272" width="28" height="6" rx="1" fill="#334155"/>
+  <rect x="1020" y="296" width="28" height="6" rx="1" fill="#334155"/>
+  <rect x="1020" y="320" width="28" height="6" rx="1" fill="#334155"/>
+  <rect x="1020" y="344" width="28" height="6" rx="1" fill="#334155"/>
+  <rect x="1020" y="368" width="28" height="6" rx="1" fill="#334155"/>
+  <!-- Top pins -->
+  <rect x="842" y="132" width="6" height="28" rx="1" fill="#334155"/>
+  <rect x="866" y="132" width="6" height="28" rx="1" fill="#334155"/>
+  <rect x="890" y="132" width="6" height="28" rx="1" fill="#334155"/>
+  <rect x="914" y="132" width="6" height="28" rx="1" fill="#334155"/>
+  <rect x="938" y="132" width="6" height="28" rx="1" fill="#334155"/>
+  <rect x="962" y="132" width="6" height="28" rx="1" fill="#334155"/>
+  <rect x="986" y="132" width="6" height="28" rx="1" fill="#334155"/>
+  <!-- Bottom pins -->
+  <rect x="842" y="420" width="6" height="28" rx="1" fill="#334155"/>
+  <rect x="866" y="420" width="6" height="28" rx="1" fill="#334155"/>
+  <rect x="890" y="420" width="6" height="28" rx="1" fill="#334155"/>
+  <rect x="914" y="420" width="6" height="28" rx="1" fill="#334155"/>
+  <rect x="938" y="420" width="6" height="28" rx="1" fill="#334155"/>
+  <rect x="962" y="420" width="6" height="28" rx="1" fill="#334155"/>
+  <rect x="986" y="420" width="6" height="28" rx="1" fill="#334155"/>
+  <!-- Glow accent -->
+  <circle cx="910" cy="290" r="80" fill="#14b8a6" opacity="0.03"/>
+  <!-- Terminal snippet -->
+  <rect x="680" y="470" width="370" height="110" rx="6" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <text x="696" y="498" font-family="ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, monospace" font-size="13" fill="#64748b">$</text>
+  <text x="714" y="498" font-family="ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, monospace" font-size="13" fill="#94a3b8">cmake --build . && openocd -f board/st_nucleo_f4.cfg</text>
+  <text x="696" y="520" font-family="ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, monospace" font-size="13" fill="#14b8a6">✓ Build: 224 bytes</text>
+  <text x="696" y="542" font-family="ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, monospace" font-size="13" fill="#14b8a6">✓ Flash complete</text>
+  <text x="696" y="564" font-family="ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, monospace" font-size="13" fill="#5eead4" opacity="0.6">✓ One-click workflow ready</text>
+</svg>
