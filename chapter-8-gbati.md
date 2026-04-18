@@ -1,5 +1,4 @@
 ---
----
 title: "Bare-Metal Embedded C Programming: Chapter 8 - SysTick Timer"
 date: "2026-04-18"
 updated: "2026-04-18"
@@ -13,7 +12,7 @@ coverWidth: 1200
 coverHeight: 630
 ---
 
-Chapter 8 of Gbati's book covers the SysTick Timer. This chapter was fairly straightforward.
+Chapter 8 of Gbati's book covers the SysTick Timer, building on [the GPIO driver from chapter 7](/blog/chap7-gpio), [the CMSIS memory-mapped hardware from chapter 6](/blog/chapter6gbati), and [the Makefile from chapter 5](/blog/chapter5gbati). This chapter was fairly straightforward.
 
 ## Part 1: Implementing a SysTick Driver
 

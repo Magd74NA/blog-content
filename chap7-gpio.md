@@ -108,4 +108,4 @@ I added `button_init()` and `get_btn_state()` to gpio.c, wired it into main.c, a
 
 Two typos. A `~` vs `-` and a `23` vs `21`. Both invisible in code review, both immediately obvious in the peripherals view. The GPIO driver abstraction itself is straightforward. What mattered here was learning to debug hardware by observing what the registers actually contain instead of re-reading my source code hoping to spot the mistake.
 
-In the next chapter we will cover the SysTick timer.
+In the next chapter we will cover [the SysTick timer](/blog/chapter-8-gbati).
