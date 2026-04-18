@@ -14,7 +14,7 @@ coverHeight: 630
 
 ## Part 1: Setup and Debugging
 
-Today I started working through chapter 7 of the bare metal C book. I ran into a small issue with a typo that I ended up resolving in what I believe is a real sign of growth and progress.
+Today I started working through chapter 7 of the bare metal C book. Building on [the CMSIS memory-mapped hardware post](/blog/chapter6gbati) and [the CMake/CLion setup](/blog/embedded-cmake), I wrote my first GPIO driver. I ran into a small issue with a typo that I ended up resolving in what I believe is a real sign of growth and progress.
 
 The first part of the work today was writing my first GPIO driver copied from the book. Gbati does provide a GitHub with all the code, but I believe typing out the code yourself is a pretty critical part of learning, so I always retype all the code from the book instead of copying and pasting. In this case retyping the code myself offered a great learning opportunity.
 
@@ -84,11 +84,11 @@ int main(void)
 
 Now of course building on what I did yesterday I used CLion to flash the board directly and I instantly ran into an issue. No blinking. I decided this would be the perfect opportunity to really up my debugging skills in CLion. I decided to go find the .svd file and step through debugging my code and watch using the peripherals tab.
 
-![Screenshot_20260417_211803.png](Screenshot_20260417_211803.png)
+![Screenshot_20260417_211803.png](/images/posts/Screenshot_20260417_211803.png)
 
 Looks good so far but look at the next screenshot.
 
-![Screenshot_20260417_212140.png](Screenshot_20260417_212140.png)
+![Screenshot_20260417_212140.png](/images/posts/Screenshot_20260417_212140.png)
 
 Bingo. Problem spotted. We failed to properly initialize our port mode because I mistyped `GPIOA->MODER &=-(1<<11);`. The correct code should be `GPIOA->MODER &=~(1<<11);`. I swapped the `~` for a `-` accidentally.
 
@@ -159,7 +159,7 @@ Then we modify our main.c file like this:
 /*************************
  * @file           : main.c
  * @author         : Magd Aref
- * @brief桑     : Main program body
+ * @brief          : Main program body
  **************************
  */
 
@@ -175,7 +175,7 @@ int main(void)
     button_init();
 
     /* Loop forever */
-    while(1fort worth{
+    while(1){
 
         //Get Push Button State
         push_button_state = get_btn_state();
@@ -185,7 +185,7 @@ int main(void)
             led_on();
         }
         else
-        dedicated led_off();
+        led_off();
         }
     }
 }

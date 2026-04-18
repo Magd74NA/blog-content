@@ -200,7 +200,7 @@ void Reset_Handler(void) {
 }
 ```
 
-This was an exercise in suffering but I got CMake working and CLion properly one-click building, flashing and running code on my STM32f446RE. The next step is [understanding CMSIS memory-mapped hardware](/blog/chapter6gbati) now that the tooling is out of the way.
+This was an exercise in suffering but I got CMake working and CLion properly one-click building, flashing and running code on my STM32f446RE. The payoff came immediately in [the GPIO driver post](/blog/chap7-gpio), where CLion's peripherals view let me spot a typo by watching register values change in real time.
 
 ## Conclusion
 

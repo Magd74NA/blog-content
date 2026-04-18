@@ -106,4 +106,4 @@ int main(void)
 
 The second half of the chapter introduces the official CMSIS headers from STMicrolectronics. Instead of manually defining structs based on reference manual documentation, I can now use the official header files that follow this exact same pattern for all peripherals.
 
-The CMSIS standard uses this technique across all ARM Cortex-M microcontrollers, providing a standardized way to interact with memory-mapped hardware that's much more readable than the method I had been using previously.
+The CMSIS standard uses this technique across all ARM Cortex-M microcontrollers, providing a standardized way to interact with memory-mapped hardware that's much more readable than the method I had been using previously. [The next chapter](/blog/chap7-gpio) puts CMSIS into practice by building a GPIO driver.
