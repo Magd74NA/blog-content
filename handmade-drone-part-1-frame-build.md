@@ -12,7 +12,7 @@ coverWidth: 1200
 coverHeight: 630
 ---
 
-This is the first post in a series about building a drone from the ground up. A 3D printed, hand-assembled, hand-wired quadcopter that I will eventually fly with ArduPilot on an STM32 and a Raspberry Pi Zero 2 W as a companion computer.
+This is the first post in a series about building a drone from the ground up for fun and learning! A 3D printed, hand-assembled, hand-wired quadcopter that I will eventually fly with ArduPilot on an STM32 and a Raspberry Pi Zero 2 W as a companion computer.
 
 The goal is a slow-flying camera drone. Something stable enough to carry a camera, hover in place, and fly autonomous waypoints.
 
@@ -38,9 +38,9 @@ Key specs:
 - Up to 2kg flying weight
 - 10mm tube mounts on 60mm spacing for off-the-shelf accessories
 - 15mm and 30mm mounting hole spacing for flight controllers and companion computers
-- Mounts for Raspberry Pi (0/3/4), Jetson Nano, GPS modules, flow sensors, and rangefinders
+- Mounts for Raspberry Pi (0/3/4), GPS modules, flow sensors, and rangefinders
 
-The large internal volume is what sold me. I need room for an STM32 flight controller, a Pi Zero 2 W companion computer, a GPS module, and a camera. I'm not building something to race. I'm building a drone for the learning experience, and at the end I have many people in my life who would appreciate access to a camera drone, so it will have interesting utility beyond being a learning project.
+The large internal volume is what sold me. I need room for an STM32 flight controller, a Pi Zero 2 W companion computer, a GPS module, and a camera. I'm not building something to race. I'm building it with 10-inch props for slow, efficient flight. The kind of flight style where endurance and stability matter more than speed and agility. At the end I have many people in my life who would appreciate access to a camera drone, so it will have interesting utility beyond being a learning project.
 
 ## Printing the parts
 
