@@ -1,0 +1,45 @@
+<svg viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#0f172a"/>
+  <line x1="0" y1="157" x2="1200" y2="157" stroke="#14b8a6" stroke-opacity="0.08"/>
+  <line x1="0" y1="314" x2="1200" y2="314" stroke="#14b8a6" stroke-opacity="0.08"/>
+  <line x1="0" y1="471" x2="1200" y2="471" stroke="#14b8a6" stroke-opacity="0.08"/>
+  <text x="60" y="225" font-family="ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,monospace" font-size="16" fill="#64748b" letter-spacing="2">CHAPTER 10 · BARE-METAL EMBEDDED C</text>
+  <text x="60" y="310" font-family="ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,monospace" font-size="76" font-weight="800" fill="#f1f5f9">UART Driver</text>
+  <text x="60" y="395" font-family="ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,monospace" font-size="76" font-weight="800" fill="#f1f5f9">Debug Saga</text>
+  <text x="60" y="435" font-family="ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,monospace" font-size="18" fill="#94a3b8">STM32 serial output and the ST-LINK signal hijack</text>
+  <defs>
+    <linearGradient id="ag" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#14b8a6"/>
+      <stop offset="100%" stop-color="#06b6d4"/>
+    </linearGradient>
+  </defs>
+  <rect x="60" y="452" width="260" height="3" rx="1.5" fill="url(#ag)"/>
+  <path d="M700,210 H720 V345 H840 V210 H870 V345 H930 V210 H960 V345 H990 V210 H1060" fill="none" stroke="#14b8a6" stroke-width="8" stroke-opacity="0.12" stroke-linejoin="round"/>
+  <path d="M700,210 H720 V345 H840 V210 H870 V345 H930 V210 H960 V345 H990 V210 H1060" fill="none" stroke="#14b8a6" stroke-width="2.5" stroke-linejoin="round"/>
+  <g stroke="#14b8a6" stroke-opacity="0.06" stroke-dasharray="4,6">
+    <line x1="750" y1="195" x2="750" y2="360"/>
+    <line x1="780" y1="195" x2="780" y2="360"/>
+    <line x1="810" y1="195" x2="810" y2="360"/>
+    <line x1="840" y1="195" x2="840" y2="360"/>
+    <line x1="870" y1="195" x2="870" y2="360"/>
+    <line x1="900" y1="195" x2="900" y2="360"/>
+    <line x1="930" y1="195" x2="930" y2="360"/>
+    <line x1="960" y1="195" x2="960" y2="360"/>
+    <line x1="990" y1="195" x2="990" y2="360"/>
+  </g>
+  <text x="735" y="380" font-family="ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,monospace" font-size="10" fill="#14b8a6" opacity="0.5">START</text>
+  <text x="855" y="380" font-family="ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,monospace" font-size="10" fill="#14b8a6" opacity="0.5">DATA</text>
+  <text x="990" y="380" font-family="ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,monospace" font-size="10" fill="#14b8a6" opacity="0.5">STOP</text>
+  <text x="880" y="185" font-family="ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,monospace" font-size="13" fill="#64748b" text-anchor="middle">'H' = 0x48 · 115200 baud</text>
+  <rect x="720" y="415" width="300" height="85" rx="5" fill="none" stroke="#14b8a6" stroke-opacity="0.18" stroke-width="1.5"/>
+  <circle cx="870" cy="415" r="5" fill="#0f172a" stroke="#14b8a6" stroke-opacity="0.18" stroke-width="1"/>
+  <rect x="712" y="435" width="8" height="12" rx="1" fill="#14b8a6" opacity="0.15"/>
+  <rect x="712" y="462" width="8" height="12" rx="1" fill="#14b8a6" opacity="0.15"/>
+  <rect x="1020" y="435" width="8" height="12" rx="1" fill="#14b8a6" opacity="0.15"/>
+  <rect x="1020" y="462" width="8" height="12" rx="1" fill="#14b8a6" opacity="0.15"/>
+  <text x="870" y="465" font-family="ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,monospace" font-size="12" fill="#14b8a6" opacity="0.35" text-anchor="middle">STM32F446RE</text>
+  <circle cx="734" cy="441" r="3" fill="#ef4444" opacity="0.6"/>
+  <text x="742" y="445" font-family="ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,monospace" font-size="10" fill="#ef4444" opacity="0.6">PA2</text>
+  <circle cx="734" cy="468" r="3" fill="#22c55e" opacity="0.7"/>
+  <text x="742" y="472" font-family="ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,monospace" font-size="10" fill="#22c55e" opacity="0.7">PB6</text>
+</svg>
