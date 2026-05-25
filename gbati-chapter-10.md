@@ -17,23 +17,24 @@ coverHeight: 630
 
 Chapter 10 was about getting UART serial output working on the STM32. The chapter walks through configuring USART2 on PA2/PA3 of the STM32F446RE Nucleo board, setting up GPIO for alternate function mode, configuring the baud rate, and implementing a blocking transmit function.
 
-`uart.c` (initial version using USART2 on PA2)
+The chapter starts with USART2 on PA2/PA3, but I ended up moving to USART1 on PB6 after running into ST-LINK interference (more on that in Part 4). Here's the final working driver:
+
+`uart.c`
 
 ```c
 #include "uart.h"
 
-#define GPIOAEN     (1U<<0)
-#define UART2EN     (1U<<17)
+#define GPIOBEN     (1U<<1)
+#define USART1EN    (1U<<4)
 
 #define DBG_UART_BAUDRATE 115200
 #define SYS_FREQ 16000000
-#define APB1_CLK SYS_FREQ
+#define APB2_CLK SYS_FREQ
 #define CR1_TE (1U<<3)
 #define CR1_UE (1U<<13)
 #define SR_TXE (1U<<7)
 
 static void uart_set_baudrate(uint32_t periph_clk, uint32_t baudrate);
-static void uart_write(int ch);
 
 int __io_putchar(int ch) {
     uart_write(ch);
@@ -41,46 +42,50 @@ int __io_putchar(int ch) {
 }
 
 void uart_init(void) {
-    //Enable clock access
-    RCC->AHB1ENR |= GPIOAEN;
+    //Enable clock access to GPIOB
+    RCC->AHB1ENR |= GPIOBEN;
 
-    //Set the mode of PA2 to alternate function mode
-    GPIOA->MODER &=~(1U<<4);
-    GPIOA->MODER |=(1U<<5);
+    //Set the mode of PB6 to alternate function mode (bits 13:12 = 10)
+    GPIOB->MODER &=~(1U<<12);
+    GPIOB->MODER |=(1U<<13);
 
-    //Set alternate function type to AF7(UART2_TX)
-    GPIOA->AFR[0] |= (1U<<8);
-    GPIOA->AFR[0] |= (1U<<9);
-    GPIOA->AFR[0] |= (1U<<10);
-    GPIOA->AFR[0] &=~ (1U<<11);
+    //Set alternate function type to AF7 (USART1_TX) for PB6 (bits 27:24 = 0111)
+    GPIOB->AFR[0] |= (1U<<24);
+    GPIOB->AFR[0] |= (1U<<25);
+    GPIOB->AFR[0] |= (1U<<26);
+    GPIOB->AFR[0] &=~(1U<<27);
 
-    //Enable Clock Access to UART2
-    RCC->APB1ENR |= UART2EN;
+    //Enable Clock Access to USART1
+    RCC->APB2ENR |= USART1EN;
 
     //Configure uart baudrate
-    uart_set_baudrate(APB1_CLK,DBG_UART_BAUDRATE);
+    uart_set_baudrate(APB2_CLK, DBG_UART_BAUDRATE);
 
     //Configure transfer direction
-    USART2->CR1 = CR1_TE;
+    USART1->CR1 = CR1_TE;
 
     //Enable UART module
-    USART2->CR1 |= CR1_UE;
+    USART1->CR1 |= CR1_UE;
 }
 
-static void uart_write(int ch) {
+void uart_write(const int ch) {
     //Make sure transmit data register is empty
-    while (!(USART2->SR & SR_TXE)){}
+    while (!(USART1->SR & SR_TXE)){}
 
     //Write to transmit data register
-    USART2->DR =(ch & 0xFF);
+    USART1->DR =(ch & 0xFF);
 }
 
-static void uart_set_baudrate(uint32_t periph_clk, uint32_t baudrate)
-{
-    (void)periph_clk;
-    (void)baudrate;
+static uint16_t compute_uart_bd(uint32_t periph_clk, uint32_t baudrate) {
+    return ((periph_clk + (baudrate/2U))/baudrate);
+}
+
+static void uart_set_baudrate(uint32_t periph_clk, uint32_t baudrate) {
+    USART1->BRR = compute_uart_bd(periph_clk, baudrate);
 }
 ```
+
+The baud rate computation uses the standard formula: `(periph_clk + baudrate/2) / baudrate`. With APB2 clocked at 16 MHz and a target of 115200 baud, that gives a BRR of 139.
 
 The main loop sends a message over UART once per second, toggling the LED between transmissions using the TIM2 timer from chapter 9.
 
@@ -119,23 +124,22 @@ end = .;
 _end = .;
 ```
 
-In the end, `printf` was causing the program to hang on bare metal. I didn't end up figuring out how to get printf to work, so I put a pin on that for now and just used the write function.
+In the end, `printf` was causing the program to hang on bare metal. Looking back, the culprit I think is the heap size. My linker script reserves only 512 bytes for the heap (`__max_heap_size = 0x200`). newlib's `printf` needs heap space for formatting buffers, and 512 bytes is not enough. Bumping the heap or switching to a minimal printf implementation like `tinyprintf` would likely fix it, but for now I just called `uart_write` directly and moved on.
 
 ## Part 3: My Pi Zero Challenge
 
-Going beyond the book, I set myself an extra challenge: get the STM32 talking to a Raspberry Pi Zero 2 W over UART. This wasn't part of the actual chapter - I just wanted to see if I could make it work as a real-world application.
+Going beyond the book, I set myself an extra challenge: get the STM32 talking to a Raspberry Pi Zero 2 W over UART. This wasn't part of the actual chapter. I wanted to see if I could make the microcontroller talk to a real Linux system, since that's the kind of thing you'd actually do in a project, not just loop back to your own desktop.
 
-Setting up the Pi involved:
+The Pi was a fresh headless install. I flashed the SD card with Raspberry Pi OS and dropped my SSH keys into the `user-data` cloud-init file on the boot partition so I could get in over Wi-Fi without ever plugging in a monitor or keyboard. Then it was a matter of freeing up the hardware UART:
 
-1. **Flashing the SD card** with Raspberry Pi OS and adding SSH keys via the `user-data` cloud-init file on the boot partition.
-2. **Enabling the GPIO serial port** via `raspi-config` (Interface Options → Serial Port → enable hardware, disable login shell).
-3. **Disabling the serial getty** (`serial-getty@ttyS0.service`) that was claiming the port.
+1. **Enabling the GPIO serial port** via `raspi-config` (Interface Options → Serial Port → enable hardware, disable login shell).
+2. **Disabling the serial getty** (`serial-getty@ttyS0.service`) that was claiming the port.
 
 The Pi uses `/dev/ttyAMA0` (PL011 UART) on GPIO 14/15 (pins 8 and 10 on the header) with the pins in ALT0 function mode.
 
 ## Part 4: The Debugging Saga — ST-LINK vs GPIO Serial
 
-The STM32 code was confirmed working connecting the Nucleo board to my desktop via USB, I could see `"Hello from STM32..."` coming through on `/dev/ttyACM0` without any issues.
+The STM32 code was confirmed working. Connecting the Nucleo board to my desktop via USB, I could see `"Hello from STM32..."` coming through on `/dev/ttyACM0` without any issues.
 
 However, when I connected PA2 (STM32 TX) to GPIO15/Pin 10 (Pi RXD) and shared GND, nothing arrived at the Pi. Here's what I did to debug:
 
@@ -143,19 +147,19 @@ However, when I connected PA2 (STM32 TX) to GPIO15/Pin 10 (Pi RXD) and shared GN
 
 2. **Serial getty conflict** — The Pi had a serial login shell running on the UART that was claiming the port. Disabling `serial-getty@ttyS0.service` and removing `console=serial0,115200` from `/boot/firmware/cmdline.txt` freed the port.
 
-3. **The real culprit: ST-LINK** — On the Nucleo-F446RE, PA2 and PA3 are physically connected to both the STM32 and the on-board ST-LINK debugger chip through solder bridges SB62/SB63. The ST-LINK's UART receiver circuitry was loading the signal line, preventing the Pi from seeing any data. The STM32 was transmitting correctly (confirmed via USB), but the electrical signal wasn't strong enough or was being pulled by the ST-LINK. Simply switching pins was enough.
+3. **The real culprit: ST-LINK** — On the Nucleo-F446RE, PA2 and PA3 are physically connected to both the STM32 and the on-board ST-LINK debugger chip through solder bridges SB62/SB63. The ST-LINK's UART receiver circuitry was loading the signal line, preventing the Pi from seeing any data (I think not 100% sure on this part). The STM32 was transmitting correctly (confirmed via USB), but the ST-LINK's receiver was loading the PA2 trace, and the Pi at the end of a jumper wire wasn't seeing enough of a signal edge to register the data. The fix was simple: use a pin the ST-LINK isn't tied to.
 
 ## Part 5: The Fix — PB6 and USART1
 
-The solution was to move the UART output to a pin that isn't shared with the ST-LINK. I rewrote the driver to use **PB6** (USART1_TX, AF7), which is a free GPIO on the Nucleo header that goes directly to the pin without any ST-LINK interference.
+The fix was to move to **PB6** (USART1_TX, AF7), a free GPIO on the Nucleo header that goes straight to the pin with no ST-LINK in the path. The full code for this version is shown in Part 1 above.
 
-Key changes from USART2 to USART1:
+Key changes from the book's USART2 setup:
 - GPIO port changed from **GPIOA** to **GPIOB** (`GPIOBEN`)
 - USART changed from **USART2** (APB1) to **USART1** (APB2)
-- Pin changed from **PA2** to **PB6** (alternate function mode on MODER bits 13:12, AFRL bits 27:24)
+- Pin changed from **PA2** to **PB6** (MODER bits 13:12, AFRL bits 27:24)
 - Clock enable moved from `RCC->APB1ENR` to `RCC->APB2ENR`
 
-After flashing the updated code and moving the jumper from PA2 to PB6, the Pi immediately started receiving data:
+After flashing and moving the jumper from PA2 to PB6, the Pi immediately started receiving data:
 
 ```
 Listening on /dev/ttyAMA0...
